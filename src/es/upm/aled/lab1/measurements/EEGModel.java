@@ -131,6 +131,13 @@ public class EEGModel {
 	 */
 	public void saveFile(String fileName) throws IOException {
 		// TODO
+		File archivo = new File(fileName);
+		FileOutputStream fos = new FileOutputStream(archivo);
+		PrintStream ps = new PrintStream(fos);
+		
+		for(int i=0; i<this.measurements.size(); i++) {
+			
+		}
 		
 	}
 
