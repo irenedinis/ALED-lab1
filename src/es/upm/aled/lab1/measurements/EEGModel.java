@@ -135,9 +135,17 @@ public class EEGModel {
 		FileOutputStream fos = new FileOutputStream(archivo);
 		PrintStream ps = new PrintStream(fos);
 		
-		for(int i=0; i<this.measurements.size(); i++) {
-			
+		int numero = 0;
+		for (Measurement m : measurements) {
+			for(int canal = 0; canal < m.numChannels(); canal++) {
+				if (canal == m.numChannels() - 1) {
+					ps.println(m.getChannel(canal));
+				}else {
+				ps.println(numero + ", " + m.getChannel(canal) + ", ");
+				}
+			}
 		}
+		ps.close();
 		
 	}
 
@@ -262,7 +270,12 @@ public class EEGModel {
 			EEGModel eeg = new EEGModel();
 			eeg.createSyntheticData(1000);
 			// TODO
-			
+			try {
+				eeg.saveFile("Synthetic.txt");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
